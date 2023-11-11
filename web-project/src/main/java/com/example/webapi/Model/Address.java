@@ -1,0 +1,80 @@
+package com.example.webapi.Model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="Address")
+public class Address {
+
+
+    private String street;
+
+    private String suite;
+    private String city;
+    @Id
+    private String zipcode;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Geo geo;
+
+    public Address() {
+    }
+
+    public Address(String street,String suite,String city,String zipcode,String lat, String lng) {
+        this.street = street;
+        this.suite=suite;
+        this.city = city;
+        this.zipcode=zipcode;
+        geo=new Geo(lat,lng);
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getSuite() {
+        return suite;
+    }
+
+    public void setSuite(String suite) {
+        this.suite = suite;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Geo getGeo() {
+        return geo;
+    }
+
+    public void setGeo(Geo geo) {
+        this.geo = geo;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", suite='" + suite + '\'' +
+                ", city='" + city + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", geo=" + geo.toString() +
+                '}';
+    }
+}
